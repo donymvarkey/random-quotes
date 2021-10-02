@@ -10,6 +10,7 @@ export default function Quotes() {
     const getQuote = () => {
         axios.get(url)
          .then((res) => {
+             console.log(res.data)
              setQuote(res.data)
          })
     }
@@ -27,7 +28,6 @@ export default function Quotes() {
             autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
-            pauseOnHover: false,
             draggable: true,
             progress: undefined,
         })
@@ -90,43 +90,44 @@ export default function Quotes() {
     }
     return (
         <div className="container">
-            <div className="card mx-auto mt-5 p-2" style={{width: '100%'}}>
-                <div className="card-body">
-                    <div className="row">
-                        <div className="col">
-                            <div className="text-end">
-                                Tags <p className="badge bg-primary">{quote.tags}</p>
+            <div className="mt-5 p-2">
+                <div className="card p-2">
+                    <div className="card-body">
+                        <figure class="text-center">
+                            <blockquote class="blockquote p-2 quote">
+                                <p className="h4 fw-bold" >"{quote.content}"</p>
+                            </blockquote>
+                            <figcaption class="blockquote-footer text-end">
+                                <cite title="Source Title">{quote.author}</cite>
+                            </figcaption>
+                        </figure>
+                    
+                        <div className="row g-2">
+                            <div className="col">
+                                <button className="btn btn-primary" onClick={getNewQuote}>Get New Quote</button>
+                            </div>
+                            <div className="col text-end">
+                                <button className="btn btn-light ml-3" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy" onClick={copyToClipboard}><i class="bi bi-clipboard"></i></button>
                             </div>
                         </div>
                     </div>
-                    <figure class="text-center">
-                        <blockquote class="blockquote p-2 quote">
-                            <p className="h4 fw-bold" onClick={copyToClipboard}>"{quote.content}"</p>
-                        </blockquote>
-                        <figcaption class="blockquote-footer text-end">
-                            <cite title="Source Title">{quote.author}</cite>
-                        </figcaption>
-                    </figure>
-                    <div className="text-center">
-                        <button className="btn btn-primary" onClick={getNewQuote}>Get New Quote</button>
-                    </div>
-                </div>
-                <div className="card-footer bg-white">
-                    <div className="row text-center">
-                        <div className="col-md-6">
-                            <p>Powered By <a className="text-decoration-none" href="https://github.com/lukePeavey/quotable" target="_blank">quotable.io</a></p>
-                        </div>
-                        <div className="col-md-6">
-                            <a className="text-decoration-none" href="https://github.com/donymvarkey/random-quotes.git" target="_blank"><i className="bi-github fs-4"></i></a>
+                    <div className="card-footer bg-white">
+                        <div className="row text-center">
+                            <div className="col-md-6">
+                                <p>Powered By <a className="text-decoration-none" href="https://github.com/lukePeavey/quotable" target="_blank">quotable.io</a></p>
+                            </div>
+                            <div className="col-md-6">
+                                <a className="text-decoration-none" href="https://github.com/donymvarkey/random-quotes.git" target="_blank"><i className="bi-github fs-4"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        <ToastContainer />
+                    <div className="row">
+                        <div className="col">
+                            <ToastContainer />
+                        </div>
                     </div>
+                    
                 </div>
-                
             </div>
         </div>
     )
