@@ -3,7 +3,7 @@ import { NavBar, Quotes } from './components/index'
 
 function App() {
   return (
-    <div className="App">
+    <div id="App" className="App">
       <NavBar />
       <Quotes />
     </div>
