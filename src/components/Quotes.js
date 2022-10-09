@@ -9,17 +9,16 @@ export default function Quotes() {
 
     const getQuote = () => {
         axios.get(url)
-         .then((res) => {
-             console.log(res.data)
-             setQuote(res.data)
-         })
+            .then((res) => {
+                setQuote(res.data)
+            })
     }
 
     useEffect(() => {
         getQuote();
     }, [])
 
-    const getNewQuote = () =>{
+    const getNewQuote = () => {
         getQuote()
     }
     const createSuccessToast = () => {
@@ -46,14 +45,13 @@ export default function Quotes() {
     const copyToClipboard = () => {
         const content = `${quote.content} -${quote.author}`;
         if (typeof (navigator.clipboard) == 'undefined') {
-            console.log('navigator.clipboard');
             var textArea = document.createElement("textarea");
             textArea.value = content;
             textArea.style.position = "fixed";  //avoid scrolling to bottom
             document.body.appendChild(textArea);
             textArea.focus();
             textArea.select();
-        
+
             try {
                 var successful = document.execCommand('copy');
                 var msg = successful ? 'Copied to clipboard 📋' : 'Unable to copy to clipboard';
@@ -65,7 +63,7 @@ export default function Quotes() {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    });
+                });
             } catch (err) {
                 toast(err, {
                     position: "top-right",
@@ -75,9 +73,9 @@ export default function Quotes() {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    });
+                });
             }
-        
+
             document.body.removeChild(textArea)
             return;
         }
@@ -86,7 +84,7 @@ export default function Quotes() {
         }, function (err) {
             createErrorToast(err)
         });
-        
+
     }
     return (
         <div className="container">
@@ -101,7 +99,7 @@ export default function Quotes() {
                                 <cite title="Source Title">{quote.author}</cite>
                             </figcaption>
                         </figure>
-                    
+
                         <div className="row g-2">
                             <div className="col">
                                 <button className="btn btn-primary" onClick={getNewQuote}>Get New Quote</button>
@@ -114,10 +112,10 @@ export default function Quotes() {
                     <div className="card-footer bg-white">
                         <div className="row text-center">
                             <div className="col-md-6">
-                                <p>Powered By <a className="text-decoration-none" href="https://github.com/lukePeavey/quotable" target="_blank">quotable.io</a></p>
+                                <p>Powered By <a className="text-decoration-none" rel="noreferrer" href="https://github.com/lukePeavey/quotable" target="_blank">quotable.io</a></p>
                             </div>
                             <div className="col-md-6">
-                                <a className="text-decoration-none" href="https://github.com/donymvarkey/random-quotes.git" target="_blank"><i className="bi-github fs-4"></i></a>
+                                <a className="text-decoration-none" rel="noreferrer" href="https://github.com/donymvarkey/random-quotes.git" target="_blank"><i className="bi-github fs-4"></i></a>
                             </div>
                         </div>
                     </div>
@@ -126,7 +124,7 @@ export default function Quotes() {
                             <ToastContainer />
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
